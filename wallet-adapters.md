@@ -6,15 +6,15 @@
 
 As `@tronweb3/tronwallet-adapters` exports adapter of each wallet , you can use this package, or use the individual wallet adapter you want.
 
-| NPM package                                                                                                          | Description                                                                  | Source Code                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| [`@tronweb3/tronwallet-adapters`](https://npmjs.com/package/@tronweb3/tronwallet-adapters)                           | Includes all the wallet adapters                                             | [View](https://github.com/tronsolution/tronwallet-adapter/tree/main/packages/adapters/adapters)      |
-| [`@tronweb3/tronwallet-adapter-tronlink`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-tronlink)           | adapter for [TronLink](https://www.tronlink.org/)                            | [View](https://github.com/tronsolution/tronwallet-adapter/tree/main/packages/adapters/tronlink)      |
-| [`@tronweb3/tronwallet-adapter-walletconnect`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-walletconnect) | adapter for adapter for [WalletConnect](https://docs.walletconnect.com/2.0/) | [View](https://github.com/tronsolution/tronwallet-adapter/tree/main/packages/adapters/walletconnect) |
-| [`@tronweb3/tronwallet-adapter-tokenpocket`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-tokenpocket)     | adapter for [TokenPocket](https://tokenpocket.pro/)                          | [View](https://github.com/tronsolution/tronwallet-adapter/tree/main/packages/adapters/tokenpocket)   |
-| [`@tronweb3/tronwallet-adapter-bitkeep`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-bitkeep)             | adapter for [BitKeep](https://bitkeep.com/)                                  | [View](https://github.com/tronsolution/tronwallet-adapter/tree/main/packages/adapters/bitkeep)       |
-| [`@tronweb3/tronwallet-adapter-okxwallet`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-okxwallet)         | adapter for [Okx Wallet](https://okx.com/)                                   | [View](https://github.com/tronsolution/tronwallet-adapter/tree/main/packages/adapters/okxwallet)     |
-| [`@tronweb3/tronwallet-adapter-ledger`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-ledger)               | adapter for [Ledger](https://www.ledger.com/)                                | [View](https://github.com/tronsolution/tronwallet-adapter/tree/main/packages/adapters/ledger)        |
+| NPM package                                                                                                          | Description                                                                  | Source Code                                                                                       |
+| -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| [`@tronweb3/tronwallet-adapters`](https://npmjs.com/package/@tronweb3/tronwallet-adapters)                           | Includes all the wallet adapters                                             | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/adapters)      |
+| [`@tronweb3/tronwallet-adapter-tronlink`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-tronlink)           | adapter for [TronLink](https://www.tronlink.org/)                            | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/tronlink)      |
+| [`@tronweb3/tronwallet-adapter-walletconnect`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-walletconnect) | adapter for adapter for [WalletConnect](https://docs.walletconnect.com/2.0/) | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/walletconnect) |
+| [`@tronweb3/tronwallet-adapter-tokenpocket`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-tokenpocket)     | adapter for [TokenPocket](https://tokenpocket.pro/)                          | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/tokenpocket)   |
+| [`@tronweb3/tronwallet-adapter-bitkeep`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-bitkeep)             | adapter for [BitKeep](https://bitkeep.com/)                                  | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/bitkeep)       |
+| [`@tronweb3/tronwallet-adapter-okxwallet`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-okxwallet)         | adapter for [Okx Wallet](https://okx.com/)                                   | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/okxwallet)     |
+| [`@tronweb3/tronwallet-adapter-ledger`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-ledger)               | adapter for [Ledger](https://www.ledger.com/)                                | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/ledger)        |
 
 ## Usage
 
@@ -26,59 +26,59 @@ You can use `@tronweb3/tronwallet-adapters` in your component. Use `useMemo` to 
 import { TronLinkAdapter } from '@tronweb3/tronwallet-adapters';
 
 function App() {
-    const [readyState, setReadyState] = useState(WalletReadyState.NotFound);
-    const [account, setAccount] = useState('');
-    const [netwok, setNetwork] = useState({});
-    const [signedMessage, setSignedMessage] = useState('');
+  const [readyState, setReadyState] = useState(WalletReadyState.NotFound);
+  const [account, setAccount] = useState('');
+  const [netwok, setNetwork] = useState({});
+  const [signedMessage, setSignedMessage] = useState('');
 
-    const adapter = useMemo(() => new TronLinkAdapter(), []);
-    useEffect(() => {
-        setReadyState(adapter.state);
-        setAccount(adapter.address!);
+  const adapter = useMemo(() => new TronLinkAdapter(), []);
+  useEffect(() => {
+    setReadyState(adapter.state);
+    setAccount(adapter.address!);
 
-        adapter.on('connect', () => {
-            setAccount(adapter.address!);
-        });
+    adapter.on('connect', () => {
+      setAccount(adapter.address!);
+    });
 
-        adapter.on('readyStateChanged', (state) => {
-            setReadyState(state);
-        });
+    adapter.on('readyStateChanged', state => {
+      setReadyState(state);
+    });
 
-        adapter.on('accountsChanged', (data) => {
-            setAccount(data);
-        });
+    adapter.on('accountsChanged', data => {
+      setAccount(data);
+    });
 
-        adapter.on('chainChanged', (data) => {
-            setNetwork(data);
-        });
+    adapter.on('chainChanged', data => {
+      setNetwork(data);
+    });
 
-        adapter.on('disconnect', () => {
-            // when disconnect from wallet
-        });
-        return () => {
-            // remove all listeners when components is destroyed
-            adapter.removeAllListeners();
-        };
-    }, []);
+    adapter.on('disconnect', () => {
+      // when disconnect from wallet
+    });
+    return () => {
+      // remove all listeners when components is destroyed
+      adapter.removeAllListeners();
+    };
+  }, []);
 
-    async function sign() {
-        const res = await adapter!.signMessage('helloworld');
-        setSignedMessage(res);
-    }
+  async function sign() {
+    const res = await adapter!.signMessage('helloworld');
+    setSignedMessage(res);
+  }
 
-    return (
-        <div className="App">
-            <div>readyState: {readyState}</div>
-            <div>current address: {account}</div>
-            <div>current network: {JSON.stringify(netwok)}</div>
-            <button disabled={adapter.connected} onClick={() => adapter.connect()}>
-                Connect to TronLink
-            </button>
-            <button onClick={sign}>sign message</button>
-            <br />
-            SignedMessage: {signedMessage}
-        </div>
-    );
+  return (
+    <div className="App">
+      <div>readyState: {readyState}</div>
+      <div>current address: {account}</div>
+      <div>current network: {JSON.stringify(netwok)}</div>
+      <button disabled={adapter.connected} onClick={() => adapter.connect()}>
+        Connect to TronLink
+      </button>
+      <button onClick={sign}>sign message</button>
+      <br />
+      SignedMessage: {signedMessage}
+    </div>
+  );
 }
 ```
 
@@ -126,32 +126,32 @@ The `Adapter` class defines the common interface for all adapters of specified w
 
 #### Constructor
 
--   `constructor(config)`: adapter constructor method, an optional config is valid. For detailed config type, refer to the following [adapter section](#tronlinkadapter).
+- `constructor(config)`: adapter constructor method, an optional config is valid. For detailed config type, refer to the following [adapter section](#tronlinkadapter).
 
 #### Properties
 
--   `name`: The name of the adapter.
--   `url`: The website of the adapter's wallet.
--   `icon`: The icon of the adapter's wallet.
--   `readyState`: The wallet's state, which includes three value:
-    -   `Loading`: When adapter is checking if the wallet is available or not.
-    -   `NotFound`: The wallet is not detected in current browser.
-    -   `Found`: The wallet is detected in current browser.
--   `address`: The address of current account when the adapter is connected.
--   `connecting`: Whether the adapter is trying to connect to the wallet.
--   `connected`: Whether the adapter is connected to the wallet.
+- `name`: The name of the adapter.
+- `url`: The website of the adapter's wallet.
+- `icon`: The icon of the adapter's wallet.
+- `readyState`: The wallet's state, which includes three value:
+  - `Loading`: When adapter is checking if the wallet is available or not.
+  - `NotFound`: The wallet is not detected in current browser.
+  - `Found`: The wallet is detected in current browser.
+- `address`: The address of current account when the adapter is connected.
+- `connecting`: Whether the adapter is trying to connect to the wallet.
+- `connected`: Whether the adapter is connected to the wallet.
 
 #### Methods
 
--   `connect(): Promise<void>`: connect to the wallet.
--   `disconnect(): Promise<void>`: disconnect to the wallet.
--   `signMessage(message, privateKey?): Promise<string>`: sign a string, return the signature result. An optional `privateKey` can be provided.
--   `signTransaction(transaction, privateKey?)`: sign a transaction, return the signature result of the transaction. An optional `privateKey` can be provided.
--   `multiSign(transaction, privateKey: string | null, permissionId?)`: sign a multi-sign transaction.
-    -   If `privateKey` is not `null`, will use the privateKey to sign rather than TronLink.
-    -   If `permissionId` is not provided, will use `0`(OwnerPerssion) as default.
-    -   Please refer to [here](https://developers.tron.network/docs/multi-signature) for more about Multi-Sign,
--   `switchChain(chainId: string): Promise<void>;`: request wallet to switch chain by `chainId`.
+- `connect(): Promise<void>`: connect to the wallet.
+- `disconnect(): Promise<void>`: disconnect to the wallet.
+- `signMessage(message, privateKey?): Promise<string>`: sign a string, return the signature result. An optional `privateKey` can be provided.
+- `signTransaction(transaction, privateKey?)`: sign a transaction, return the signature result of the transaction. An optional `privateKey` can be provided.
+- `multiSign(transaction, privateKey: string | null, permissionId?)`: sign a multi-sign transaction.
+  - If `privateKey` is not `null`, will use the privateKey to sign rather than TronLink.
+  - If `permissionId` is not provided, will use `0`(OwnerPerssion) as default.
+  - Please refer to [here](https://developers.tron.network/docs/multi-signature) for more about Multi-Sign,
+- `switchChain(chainId: string): Promise<void>;`: request wallet to switch chain by `chainId`.
 
 #### Events
 
@@ -159,33 +159,33 @@ The `Adapter` class defines the common interface for all adapters of specified w
 
 Events are as follows:
 
--   `connect(address)`: Emit when adapter is connected to the wallet. The parameter is the address of current account.
--   `disconnect()`: Emit when adapter is disconnected to the wallet.
--   `readyStateChanged(state: WalletReadyState)`: Emit when wallet's readyState is changed. The parameter is the state of wallet:
-    ```typescript
-    enum WalletReadyState {
-        /**
-         * Adapter will start to check if wallet exists after adapter instance is created.
-         */
-        Loading = 'Loading',
-        /**
-         * When checking ends and wallet is not found, readyState will be NotFound.
-         */
-        NotFound = 'NotFound',
-        /**
-         * When checking ends and wallet is found, readyState will be Found.
-         */
-        Found = 'Found',
-    }
-    ```
--   `accountsChanged(address: string, preAddress: string)`: Emit when users change the current selected account in wallet. The parameter is the address of new account.
--   `chainChanged(chainInfo: ChainInfo)`: Emit when users change the current selected chain in wallet. The parameter is the new network config：
-    ```typescript
-    interface ChainInfo {
-        chainId: string;
-    }
-    ```
--   `error(WalletError)`: Emit when there are some errors when call the adapter's method. The [WalletError Types] is defined as follows.
+- `connect(address)`: Emit when adapter is connected to the wallet. The parameter is the address of current account.
+- `disconnect()`: Emit when adapter is disconnected to the wallet.
+- `readyStateChanged(state: WalletReadyState)`: Emit when wallet's readyState is changed. The parameter is the state of wallet:
+  ```typescript
+  enum WalletReadyState {
+    /**
+     * Adapter will start to check if wallet exists after adapter instance is created.
+     */
+    Loading = 'Loading',
+    /**
+     * When checking ends and wallet is not found, readyState will be NotFound.
+     */
+    NotFound = 'NotFound',
+    /**
+     * When checking ends and wallet is found, readyState will be Found.
+     */
+    Found = 'Found'
+  }
+  ```
+- `accountsChanged(address: string, preAddress: string)`: Emit when users change the current selected account in wallet. The parameter is the address of new account.
+- `chainChanged(chainInfo: ChainInfo)`: Emit when users change the current selected chain in wallet. The parameter is the new network config：
+  ```typescript
+  interface ChainInfo {
+    chainId: string;
+  }
+  ```
+- `error(WalletError)`: Emit when there are some errors when call the adapter's method. The [WalletError Types] is defined as follows.
 
 ### WalletError
 
@@ -195,23 +195,23 @@ Developers can check the error type according to the error instance.
 
 ```typescript
 try {
-    // do something here
+  // do something here
 } catch (error: WalletError) {
-    if (error instanceof WalletNotFoundError) {
-        console.log('Wallet is not found');
-    }
+  if (error instanceof WalletNotFoundError) {
+    console.log('Wallet is not found');
+  }
 }
 ```
 
 All errors are as follows:
 
--   `WalletNotFoundError`: Occurs when wallet is not installed.
--   `WalletNotSelectedError`: Occurs when connect but there is no selected wallet.
--   `WalletDisconnectedError`: Occurs when wallet is disconnected. Used by some wallets which won't connect automatically when call `signMessage()` or `signTransaction()`.
--   `WalletConnectionError`: Occurs when try to connect a wallet.
--   `WalletDisconnectionError`: Occurs when try to disconnect a wallet.
--   `WalletSignMessageError`: Occurs when call `signMessage()`.
--   `WalletSignTransactionError`: Occurs when call `signTransaction()`.
+- `WalletNotFoundError`: Occurs when wallet is not installed.
+- `WalletNotSelectedError`: Occurs when connect but there is no selected wallet.
+- `WalletDisconnectedError`: Occurs when wallet is disconnected. Used by some wallets which won't connect automatically when call `signMessage()` or `signTransaction()`.
+- `WalletConnectionError`: Occurs when try to connect a wallet.
+- `WalletDisconnectionError`: Occurs when try to disconnect a wallet.
+- `WalletSignMessageError`: Occurs when call `signMessage()`.
+- `WalletSignTransactionError`: Occurs when call `signTransaction()`.
 
 Following exmaple shows how to get original error info with `WalletError`:
 
@@ -226,66 +226,67 @@ try {
 
 <h3 id="tronlinkadapter">TronLinkAdapter</h3>
 
--   `Constructor(config: TronLinkAdapterConfig)`
-    ```typescript
-    interface TronLinkAdapterConfig {
-        /**
-         * Set if open Wallet's website url when wallet is not installed.
-         * Default is true.
-         */
-        openUrlWhenWalletNotFound?: boolean;
-        /**
-         * Timeout in millisecond for checking if TronLink wallet exists.
-         * Default is 30 * 1000ms
-         */
-        checkTimeout?: number;
-        /**
-         * Set if open TronLink app using DeepLink on mobile device.
-         * Default is true.
-         */
-        openTronLinkAppOnMobile?: boolean;
-        /**
-         * The icon of your dapp. Used when open TronLink app in mobile device browsers.
-         * Default is current website icon.
-         */
-        dappIcon?: string;
-        /**
-         * The name of your dapp. Used when open TronLink app in mobile device browsers.
-         * Default is `document.title`.
-         */
-        dappName?: string;
-    }
-    ```
--   `network()` method is supported to get current network information. The type of returned value is `Network` as follows:
+- `Constructor(config: TronLinkAdapterConfig)`
+  ```typescript
+  interface TronLinkAdapterConfig {
+    /**
+     * Set if open Wallet's website url when wallet is not installed.
+     * Default is true.
+     */
+    openUrlWhenWalletNotFound?: boolean;
+    /**
+     * Timeout in millisecond for checking if TronLink wallet exists.
+     * Default is 30 * 1000ms
+     */
+    checkTimeout?: number;
+    /**
+     * Set if open TronLink app using DeepLink on mobile device.
+     * Default is true.
+     */
+    openTronLinkAppOnMobile?: boolean;
+    /**
+     * The icon of your dapp. Used when open TronLink app in mobile device browsers.
+     * Default is current website icon.
+     */
+    dappIcon?: string;
+    /**
+     * The name of your dapp. Used when open TronLink app in mobile device browsers.
+     * Default is `document.title`.
+     */
+    dappName?: string;
+  }
+  ```
+- `network()` method is supported to get current network information. The type of returned value is `Network` as follows:
 
-    ```typescript
-    export enum NetworkType {
-        Mainnet = 'Mainnet',
-        Shasta = 'Shasta',
-        Nile = 'Nile',
-        /**
-         * When use custom node
-         */
-        Unknown = 'Unknown',
-    }
+  ```typescript
+  export enum NetworkType {
+    Mainnet = 'Mainnet',
+    Shasta = 'Shasta',
+    Nile = 'Nile',
+    /**
+     * When use custom node
+     */
+    Unknown = 'Unknown'
+  }
 
-    export type Network = {
-        networkType: NetworkType;
-        chainId: string;
-        fullNode: string;
-        solidityNode: string;
-        eventServer: string;
-    };
-    ```
+  export type Network = {
+    networkType: NetworkType;
+    chainId: string;
+    fullNode: string;
+    solidityNode: string;
+    eventServer: string;
+  };
+  ```
 
--   **TronLink Doesn't support `disconnect` by DApp**. As TronLinkAdapter doesn't support disconnect by DApp website, call `adapter.disconnect()` won't disconnect from TronLink extension really.
--   **Auto open TronLink app in mobile browser**. If developers call `connect()` method in mobile browser, it will open DApp in TronLink app to get tronlink wallet.
+- **TronLink Doesn't support `disconnect` by DApp**. As TronLinkAdapter doesn't support disconnect by DApp website, call `adapter.disconnect()` won't disconnect from TronLink extension really.
+- **Auto open TronLink app in mobile browser**. If developers call `connect()` method in mobile browser, it will open DApp in TronLink app to get tronlink wallet.
 
 ### Others adapters
+
 Others adapters `Constructor` config api can be found in their source code `README`.
 
--   [TokenPocketAdapter](https://github.com/tronsolution/tronwallet-adapter/tree/main/packages/adapters/tokenpocket)
--   [BitKeepAdapter](https://github.com/tronsolution/tronwallet-adapter/tree/main/packages/adapters/bitkeep)
--   [OkxWalletAdapter](https://github.com/tronsolution/tronwallet-adapter/tree/main/packages/adapters/okxwallet)
--   [WalletConnectAdapter](https://github.com/tronsolution/tronwallet-adapter/tree/main/packages/adapters/walletconnect)
--   [LedgerAdapter](https://github.com/tronsolution/tronwallet-adapter/tree/main/packages/adapters/ledger)
+- [TokenPocketAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/tokenpocket)
+- [BitKeepAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/bitkeep)
+- [OkxWalletAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/okxwallet)
+- [WalletConnectAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/walletconnect)
+- [LedgerAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/ledger)

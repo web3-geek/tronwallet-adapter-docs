@@ -16,40 +16,38 @@ npm install @tronweb3/tronwallet-adapter-vue-hooks @tronweb3/tronwallet-abstract
 
 You can provide a `onError` callback to handle various errors such as `WalletConnectionError`, `WalletNotFoundError`.
 
-Here is a [Demo project](https://github.com/tronsolution/tronwallet-adapter/tree/main/demos/vue-ui/vite-app);
+Here is a [Demo project](https://github.com/web3-geek/tronwallet-adapter/tree/main/demos/vue-ui/vite-app);
 
 ```html
 <script setup>
-    import { defineComponent, h } from 'vue';
-    import { WalletProvider, useWallet } from '@tronweb3/tronwallet-adapter-vue-hooks';
-    import { TronLinkAdapter } from '@tronweb3/tronwallet-adapters';
-    const tronLink = new TronLinkAdapter();
+  import { defineComponent, h } from 'vue';
+  import { WalletProvider, useWallet } from '@tronweb3/tronwallet-adapter-vue-hooks';
+  import { TronLinkAdapter } from '@tronweb3/tronwallet-adapters';
+  const tronLink = new TronLinkAdapter();
 
-    const adapters = [tronLink];
+  const adapters = [tronLink];
 
-    function onConnect(address) {
-        console.log('[wallet hooks] onConnect: ', address);
+  function onConnect(address) {
+    console.log('[wallet hooks] onConnect: ', address);
+  }
+  function onDisconnect() {
+    console.log('[wallet hooks] onDisconnect');
+  }
+
+  const VueComponent = defineComponent({
+    setup() {
+      // Here you can use `useWallet` API
+      const { wallet, connect, signMessage, signTransaction } = useWallet();
+      return () =>
+        h('div', [h('div', { style: 'color: #222;' }, `Current Adapter: ${(wallet && wallet.adapter.name) || ''}`)]);
     }
-    function onDisconnect() {
-        console.log('[wallet hooks] onDisconnect');
-    }
-
-    const VueComponent = defineComponent({
-        setup() {
-            // Here you can use `useWallet` API
-            const { wallet, connect, signMessage, signTransaction } = useWallet();
-            return () =>
-                h('div', [
-                    h('div', { style: 'color: #222;' }, `Current Adapter: ${(wallet && wallet.adapter.name) || ''}`),
-                ]);
-        },
-    });
+  });
 </script>
 
 <template>
-    <WalletProvider :adapters="adapters" @connect="onConnect" @disconnect="onDisconnect">
-        <VueComponent />
-    </WalletProvider>
+  <WalletProvider :adapters="adapters" @connect="onConnect" @disconnect="onDisconnect">
+    <VueComponent />
+  </WalletProvider>
 </template>
 ```
 
@@ -59,10 +57,10 @@ Here is a [Demo project](https://github.com/tronsolution/tronwallet-adapter/tree
 
 ```html
 <html>
-    <WalletProvider>/* here is application components */</WalletProvider>
+  <WalletProvider>/* here is application components */</WalletProvider>
 </html>
 <script setup>
-    import { useWallet, WalletProvider } from '@tronweb3/tronwallet-adapter-vue-hooks';
+  import { useWallet, WalletProvider } from '@tronweb3/tronwallet-adapter-vue-hooks';
 </script>
 ```
 
@@ -70,46 +68,46 @@ Here is a [Demo project](https://github.com/tronsolution/tronwallet-adapter/tree
 
 #### adapters:
 
--   Required: `false`
--   Type: `Adapter[]`
--   Default: `[ new TronLinkAdapter() ]`
+- Required: `false`
+- Type: `Adapter[]`
+- Default: `[ new TronLinkAdapter() ]`
 
 Used to specify what wallet adapters are supported. All wallet adapters can be imported from `@tronweb3/tronwallet-adapters` package or their standalone package.
 
--   Example
-    ```html
-    <template>
-        <WalletProvider :adapters="adapters">/* here is application components */</WalletProvider>
-    </template>
-    <script setup>
-        import { useWallet, WalletProvider } from '@tronweb3/tronwallet-adapter-vue-hooks';
-        import { TronLinkAdapter } from '@tronweb3/tronwallet-adapters';
-        const adapters = [new TronLinkAdapter()];
-    </script>
-    ```
+- Example
+  ```html
+  <template>
+    <WalletProvider :adapters="adapters">/* here is application components */</WalletProvider>
+  </template>
+  <script setup>
+    import { useWallet, WalletProvider } from '@tronweb3/tronwallet-adapter-vue-hooks';
+    import { TronLinkAdapter } from '@tronweb3/tronwallet-adapters';
+    const adapters = [new TronLinkAdapter()];
+  </script>
+  ```
 
 #### autoConnect
 
--   Required: `false`
--   Type: `boolean`
--   Default: `true`
+- Required: `false`
+- Type: `boolean`
+- Default: `true`
 
 Whether connect to the specified wallet automatically after a wallet is selected.
 
 #### disableAutoConnectOnLoad
 
--   Required: `false`
--   Type: `boolean`
--   Default: `false`
+- Required: `false`
+- Type: `boolean`
+- Default: `false`
 
 Whether automatically connect to current selected wallet after the page is loaded when `autoConnect` enabled.
 If you don't want to connect the wallet when page is first loaded, set `disableAutoConnectOnLoad: true`.
 
 #### localStorageKey
 
--   Required: `false`
--   Type: `string`
--   Default: `tronAdapterName`
+- Required: `false`
+- Type: `string`
+- Default: `tronAdapterName`
 
 Specified the key used to cache wallet name in `localStorage`. When user select a wallet, applications will cache the wallet name to localStorage.
 
@@ -117,16 +115,16 @@ Specified the key used to cache wallet name in `localStorage`. When user select 
 
 You can provide event handlers for listen adapter events, such as `connect`,`disconnect`,`accountsChanged`. Available events and their types are as follows:
 
--   `readyStateChanged: (readyState: 'Found' | 'NotFound') => void`: Emits when current adapter emits `readyStateChanged` event.
--   `connect: (address: string) => void`: Emits when current adapter emits `connect` event.
--   `disconnect: () => void`: Emits when current adapter emits `disconnect` event.
--   `accountsChanged: (newAddress: string; preAddress?: string) => void`: Emits when current adapter emits `accountsChanged` event.
--   `chainChanged: (chainData: unknow) => void`: Emits when current adapter emits `chainChanged` event.
--   `error: (error) => void`: Emits when occurs error in methods calls.
+- `readyStateChanged: (readyState: 'Found' | 'NotFound') => void`: Emits when current adapter emits `readyStateChanged` event.
+- `connect: (address: string) => void`: Emits when current adapter emits `connect` event.
+- `disconnect: () => void`: Emits when current adapter emits `disconnect` event.
+- `accountsChanged: (newAddress: string; preAddress?: string) => void`: Emits when current adapter emits `accountsChanged` event.
+- `chainChanged: (chainData: unknow) => void`: Emits when current adapter emits `chainChanged` event.
+- `error: (error) => void`: Emits when occurs error in methods calls.
 
 An event named `adapterChanged` is also avaliable to get noticed when selected adapter is changed.
 
--   `adapterChanged: (adapter: Adapter | undefined) => void`: Called when current adapter is changed.
+- `adapterChanged: (adapter: Adapter | undefined) => void`: Called when current adapter is changed.
 
 Here is an example:
 
@@ -153,99 +151,99 @@ Here is an example:
 
 #### `autoConnect`
 
--   Type: `ComputedRef<boolean>`
-    Synchronous with `autoConnect` property passed to `WalletProvider`.
+- Type: `ComputedRef<boolean>`
+  Synchronous with `autoConnect` property passed to `WalletProvider`.
 
 #### `disableAutoConnectOnLoad`
 
--   Type: `ComputedRef<boolean>`
-    Synchronous with `disableAutoConnectOnLoad` property passed to `WalletProvider`.
+- Type: `ComputedRef<boolean>`
+  Synchronous with `disableAutoConnectOnLoad` property passed to `WalletProvider`.
 
 #### `wallet`
 
--   Type: `ComputedRef<Wallet | null>`
-    The wallet current selected. If no wallet is selected, the value is `null`.
+- Type: `ComputedRef<Wallet | null>`
+  The wallet current selected. If no wallet is selected, the value is `null`.
 
 `Wallet` is defined as follow:
 
 ```typescript
 interface Wallet {
-    adapter: Adapter; // wallet adapter
-    state: AdapterState;
+  adapter: Adapter; // wallet adapter
+  state: AdapterState;
 }
 enum AdapterState {
-    NotFound = 'NotFound',
-    Disconnect = 'Disconnected',
-    Connected = 'Connected',
+  NotFound = 'NotFound',
+  Disconnect = 'Disconnected',
+  Connected = 'Connected'
 }
 ```
 
 #### `address`
 
--   Type: `ComputedRef<string | null>`
-    Address of current selected wallet. If no wallet is selected, the value is `null`.
+- Type: `ComputedRef<string | null>`
+  Address of current selected wallet. If no wallet is selected, the value is `null`.
 
 #### `wallets`
 
--   Type: `Ref<Wallet[]>`
-    Wallet list based on current used adapters when initial `WalletProvider`.
+- Type: `Ref<Wallet[]>`
+  Wallet list based on current used adapters when initial `WalletProvider`.
 
 #### `connecting`
 
--   Type: `Ref<boolean>`
-    Indicate if is connecting to the wallet.
+- Type: `Ref<boolean>`
+  Indicate if is connecting to the wallet.
 
 #### `connected`
 
--   Type: `Ref<boolean>`
-    Indicate if is connected with the wallet.
+- Type: `Ref<boolean>`
+  Indicate if is connected with the wallet.
 
 #### `disconnecting`
 
--   Type: `Ref<boolean>`
-    Indicate if is connecting to the wallet.
+- Type: `Ref<boolean>`
+  Indicate if is connecting to the wallet.
 
 ### Methods
 
 #### select
 
--   Type: `(walletAdapterName: AdapterName) => void`
-    Select a wallet by walletAdapterName. Valid adapters can be found [here](https://github.com/tronsolution/tronwallet-adapter/tree/main/packages/adapters/adapters)
+- Type: `(walletAdapterName: AdapterName) => void`
+  Select a wallet by walletAdapterName. Valid adapters can be found [here](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/adapters)
 
 #### connect
 
--   Type: `() => Promise<void>`
-    Connect to current selected wallet.
+- Type: `() => Promise<void>`
+  Connect to current selected wallet.
 
 #### disconnect
 
--   Type: `() => Promise<void>`
-    Disconnect from current selected wallet.
+- Type: `() => Promise<void>`
+  Disconnect from current selected wallet.
 
 #### signTransaction
 
--   Type: `(transaction: Transaction) => Promise<SignedTransaction>`
-    Sign a unsigned transaction. This method is the same as TronWeb API.
+- Type: `(transaction: Transaction) => Promise<SignedTransaction>`
+  Sign a unsigned transaction. This method is the same as TronWeb API.
 
 #### signMessage
 
--   Type: `(message: string) => Promise<string>`
-    Sign a message.
+- Type: `(message: string) => Promise<string>`
+  Sign a message.
 
 ### Example
 
 ```html
 <template>
-    <div>
-        <button type="button" @click="() => select('TronLink Adapter')">Select TronLink</button>
-        <button type="button" :disabled="connected" @click="connect">Connect</button>
-        <button type="button" :disabled="!connected" @click="disconnect">Disconnect</button>
-    </div>
+  <div>
+    <button type="button" @click="() => select('TronLink Adapter')">Select TronLink</button>
+    <button type="button" :disabled="connected" @click="connect">Connect</button>
+    <button type="button" :disabled="!connected" @click="disconnect">Disconnect</button>
+  </div>
 </template>
 <script setup>
-    import { useWallet } from '@tronweb3/tronwallet-adapter-vue-hooks';
-    import { AdapterName } from '@tronweb3/tronwallet-abstract-adapter';
+  import { useWallet } from '@tronweb3/tronwallet-adapter-vue-hooks';
+  import { AdapterName } from '@tronweb3/tronwallet-abstract-adapter';
 
-    const { connect, disconnect, select, connected } = useWallet();
+  const { connect, disconnect, select, connected } = useWallet();
 </script>
 ```
