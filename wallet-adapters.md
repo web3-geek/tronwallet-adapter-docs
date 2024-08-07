@@ -15,6 +15,7 @@ As `@tronweb3/tronwallet-adapters` exports adapter of each wallet , you can use 
 | [`@tronweb3/tronwallet-adapter-bitkeep`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-bitkeep)             | adapter for [BitKeep](https://bitkeep.com/)                                  | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/bitkeep)       |
 | [`@tronweb3/tronwallet-adapter-okxwallet`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-okxwallet)         | adapter for [Okx Wallet](https://okx.com/)                                   | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/okxwallet)     |
 | [`@tronweb3/tronwallet-adapter-ledger`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-ledger)               | adapter for [Ledger](https://www.ledger.com/)                                | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/ledger)        |
+| [`@tronweb3/tronwallet-adapter-imtoken`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-imtoken)             | adapter for [imToken Wallet](https://token.im/)                              | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/imtoken)       |
 
 ## Usage
 
@@ -290,3 +291,4 @@ Others adapters `Constructor` config api can be found in their source code `READ
 - [OkxWalletAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/okxwallet)
 - [WalletConnectAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/walletconnect)
 - [LedgerAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/ledger)
+- [ImTokenAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/imtoken)
