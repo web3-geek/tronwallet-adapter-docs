@@ -17,6 +17,35 @@ As `@tronweb3/tronwallet-adapters` exports adapter of each wallet , you can use 
 | [`@tronweb3/tronwallet-adapter-ledger`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-ledger)               | adapter for [Ledger](https://www.ledger.com/)                                | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/ledger)        |
 | [`@tronweb3/tronwallet-adapter-imtoken`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-imtoken)             | adapter for [imToken Wallet](https://token.im/)                              | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/imtoken)       |
 | [`@tronweb3/tronwallet-adapter-gatewallet`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-gatewallet)               | adapter for [gate.io](https://www.gate.io/web3)           | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/gatewallet)        |
+| [`@tronweb3/tronwallet-adapter-foxwallet`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-foxwallet)               | adapter for [FoxWallet](https://foxwallet.com/)           | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/foxwallet)        |
+
+### Test Result
+
+| Wallet Name |  platform | version |
+| ------------- | ---------- | ----- |
+| [TronLink](https://www.tronlink.org/)| Android | >= 1.0.0 |
+| | IOS | >= 1.0.0 |
+|  |Browser Extension | >= 1.0.0|
+| [BitGet](https://web3.bitget.com/en) | Android | >= 4.0.0 |
+| | IOS | >= 4.0.0 |
+|  |Browser Extension | >= 1.0.0 |
+| [OkxWallet](https://okx.com/) | Android | >= 6.0.0 |
+| | IOS | >= 6.0.0 |
+|  |Browser Extension | >= 3.0.0 |
+| [TokenPocket](https://www.tokenpocket.pro/) | Android | >= 1.1.2 |
+| | IOS | >= 3.1.3 |
+|  |Browser Extension | Not Support |
+| [imToken](https://token.im/) | Android | >= 2.5.0 |
+| | IOS | >= 2.5.0 |
+|  |Browser Extension | Not Support |
+| [gate.io](https://www.gate.io/web3) | Android | >= 6.30.10 |
+| | IOS | >= 6.20.1 |
+|  |Browser Extension | Not Support |
+| [FoxWallet](https://foxwallet.com/) | Android | >= 5.3.1 |
+| | IOS | >= 5.3.1 |
+|  |Browser Extension | Not Support |
+| [Ledger](https://www.ledger.com/) | - | All versions |
+| [WalletConnect](https://walletconnect.org) | - | >= v2.0 |
 
 ## Usage
 
@@ -294,3 +323,5 @@ Others adapters `Constructor` config api can be found in their source code `READ
 - [LedgerAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/ledger)
 - [ImTokenAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/imtoken)
 - [GateWalletAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/gatewallet)
+- [FoxWalletAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/foxwallet)
+
