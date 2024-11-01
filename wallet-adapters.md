@@ -18,6 +18,7 @@ As `@tronweb3/tronwallet-adapters` exports adapter of each wallet , you can use 
 | [`@tronweb3/tronwallet-adapter-imtoken`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-imtoken)             | adapter for [imToken Wallet](https://token.im/)                              | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/imtoken)       |
 | [`@tronweb3/tronwallet-adapter-gatewallet`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-gatewallet)               | adapter for [gate.io](https://www.gate.io/web3)           | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/gatewallet)        |
 | [`@tronweb3/tronwallet-adapter-foxwallet`](https://npmjs.com/package/@tronweb3/tronwallet-adapter-foxwallet)               | adapter for [FoxWallet](https://foxwallet.com/)           | [View](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/foxwallet)        |
+| [bybit](https://www.bybit.com/en/web3/home)                | Adapter for Bybit Wallet App(IOS and Android) and Extension                 | [`@tronweb3/tronwallet-adapter-bybit`](https://www.npmjs.com/package/@tronweb3/tronwallet-adapter-bybit)             |
 
 ### Test Result
 
@@ -44,6 +45,9 @@ As `@tronweb3/tronwallet-adapters` exports adapter of each wallet , you can use 
 | [FoxWallet](https://foxwallet.com/) | Android | >= 5.3.1 |
 | | IOS | >= 5.3.1 |
 |  |Browser Extension | Not Support |
+| [Bybit](https://bybit.com/web3) | Android | >= 4.51.1 |
+| | IOS | >= 4.51.1 |
+|  |Browser Extension | >= 3.16.3 |
 | [Ledger](https://www.ledger.com/) | - | All versions |
 | [WalletConnect](https://walletconnect.org) | - | >= v2.0 |
 
@@ -324,4 +328,5 @@ Others adapters `Constructor` config api can be found in their source code `READ
 - [ImTokenAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/imtoken)
 - [GateWalletAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/gatewallet)
 - [FoxWalletAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/foxwallet)
+- [BybitWalletAdapter](https://github.com/web3-geek/tronwallet-adapter/tree/main/packages/adapters/bybit)
 
