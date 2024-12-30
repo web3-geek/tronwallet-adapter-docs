@@ -1,3 +1,11 @@
+# Important Notice: Repository Migration
+**Notice**: This repository has been migrated to a new repository! 
+
+This repository is no longer actively maintained at this location soon. Please visit and follow the new repository for the latest updates and contributions:
+[👉 tronweb3/tronwallet-adapter-docs](https://github.com/tronweb3/tronwallet-adapter-docs).
+
+Thank you for your understanding and support!
+
 # Overview
 
 TronwalletAdapter is a set of packages that contain wallet adapters and components for Tron DApps. With out-of-box components and unified methods, developers can easily interact with multiple kinds of wallets, `select/connect/disconnect` wallets and sign message or transaction.
